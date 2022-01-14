@@ -2,6 +2,7 @@ import '../imports.dart';
 
 class HomeScreen extends StatelessWidget {
   var currentPosition;
+  // var currentAddress;
   HomeScreen(this.currentPosition,{Key? key}) : super(key: key);
   @override
   @override
@@ -14,6 +15,7 @@ class HomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text('$currentPosition'),
+          // Text('${currentAddress}'),
           TextFormField(
             controller: _cityController,
           ),
