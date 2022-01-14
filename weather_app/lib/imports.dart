@@ -4,3 +4,4 @@ export './info.dart';
 export './screens/homeScreen.dart';
 export './screens/weatherScreen.dart';
 export "./models/weatherModel.dart";
+export 'package:geolocator/geolocator.dart';
