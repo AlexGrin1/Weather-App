@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import './imports.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,8 +14,13 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<MyProvider>.value(value: MyProvider()),
+      ],
+      child: MaterialApp(routes: {
+        '/weather': (context) => WeatherScreen(),
+      }, home: HomeScreen()),
     );
   }
 }
