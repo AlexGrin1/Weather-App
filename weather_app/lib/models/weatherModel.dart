@@ -790,6 +790,57 @@ class Hour {
 //     return data;
 //   }
 // }
+class UserLocation {
+  String? ip;
+  String? hostname;
+  String? city;
+  String? region;
+  String? country;
+  String? loc;
+  String? org;
+  String? postal;
+  String? timezone;
+
+  UserLocation(
+      {this.ip,
+      this.hostname,
+      this.city,
+      this.region,
+      this.country,
+      this.loc,
+      this.org,
+      this.postal,
+      this.timezone});
+
+  UserLocation.fromJson(Map<String, dynamic> json) {
+    ip = json['ip'];
+    hostname = json['hostname'];
+    city = json['city'];
+    region = json['region'];
+    country = json['country'];
+    loc = json['loc'];
+    org = json['org'];
+    postal = json['postal'];
+    timezone = json['timezone'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['ip'] = this.ip;
+    data['hostname'] = this.hostname;
+    data['city'] = this.city;
+    data['region'] = this.region;
+    data['country'] = this.country;
+    data['loc'] = this.loc;
+    data['org'] = this.org;
+    data['postal'] = this.postal;
+    data['timezone'] = this.timezone;
+    return data;
+  }
+}
+
+
+
 
 Future<WeatherList> getWeather(city) async {
   String userCity = city != '' ? city : "Minsk";
@@ -805,12 +856,8 @@ Future<WeatherList> getWeather(city) async {
   }
 }
 
-Future<WeatherList> getWeatherLocation(long,lat) async {
-  String userLong = long != '' ? long : "53.9";
-  String userLat = lat != '' ? lat : "27.09";
-  var url =
-      'https://api.weatherapi.com/v1/forecast.json?key=e656736c26754e098db140545212405&q=${userLong},${userLat}&days=5&lang=en';
-  // 'https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=en&appid=d73fc7a41c13319cd79564326ccc9b11&units=metric';
+Future<WeatherList> getWeatherLocation() async {
+  var url = 'https://ipinfo.io/?token=6520844a54f3ec';
   final response = await http.get(Uri.parse(url));
 
   if (response.statusCode == 200) {
@@ -819,3 +866,5 @@ Future<WeatherList> getWeatherLocation(long,lat) async {
     throw Exception('Error: ${response.reasonPhrase}');
   }
 }
+
+
