@@ -10,10 +10,12 @@ class HomeScreen extends StatelessWidget {
     MyProvider _state = Provider.of<MyProvider>(context);
     final _cityController = TextEditingController();
     return Scaffold(
+      floatingActionButton: IconButton(onPressed:(){getWeatherLocation(currentPosition,'27');}, icon:Icon(Icons.location_searching) ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          IconButton(onPressed: (){}, icon: Icon(Icons.location_city)),
           Text('$currentPosition'),
           // Text('${currentAddress}'),
           TextFormField(
@@ -24,7 +26,7 @@ class HomeScreen extends StatelessWidget {
                 _state.changeUserCityValue(_cityController.text);
                 Navigator.pushNamed(context, '/weather');
               },
-              child: Text("Get Weather"))
+              child: Text("Get Weather")),
         ],
       ),
     );

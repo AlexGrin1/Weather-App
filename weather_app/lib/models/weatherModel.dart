@@ -792,10 +792,24 @@ class Hour {
 // }
 
 Future<WeatherList> getWeather(city) async {
-  print(city);
   String userCity = city != '' ? city : "Minsk";
   var url =
       'https://api.weatherapi.com/v1/forecast.json?key=e656736c26754e098db140545212405&q=${userCity}&days=5&lang=en';
+  // 'https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=en&appid=d73fc7a41c13319cd79564326ccc9b11&units=metric';
+  final response = await http.get(Uri.parse(url));
+
+  if (response.statusCode == 200) {
+    return WeatherList.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Error: ${response.reasonPhrase}');
+  }
+}
+
+Future<WeatherList> getWeatherLocation(long,lat) async {
+  String userLong = long != '' ? long : "53.9";
+  String userLat = lat != '' ? lat : "27.09";
+  var url =
+      'https://api.weatherapi.com/v1/forecast.json?key=e656736c26754e098db140545212405&q=${userLong},${userLat}&days=5&lang=en';
   // 'https://api.openweathermap.org/data/2.5/weather?q=${city}&lang=en&appid=d73fc7a41c13319cd79564326ccc9b11&units=metric';
   final response = await http.get(Uri.parse(url));
 
